@@ -9,7 +9,7 @@ export const DashboardRouter = [
     children: <Dashboard />
   },
   {
-    path: "/detail",
+    path: "/detail/",
     exact: false,
     children: <Detail />
   },

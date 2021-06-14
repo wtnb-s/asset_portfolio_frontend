@@ -14,7 +14,7 @@ export const Router: VFC = memo(() => {
         <Login />
       </Route>
       <Route
-        path="/dashboard"
+        path="/dashboard/"
         render={({ match: { url } }) => (
           <Switch>
             {DashboardRouter.map((route) => (
@@ -29,7 +29,7 @@ export const Router: VFC = memo(() => {
           </Switch>
         )}
       />
-      <Route exact path="/account">
+      <Route exact path="/account/">
         <Account />
       </Route>
       <Route path="*">
