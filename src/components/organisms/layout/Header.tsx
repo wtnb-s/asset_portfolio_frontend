@@ -1,21 +1,19 @@
-import {
-    Box,
-    Button,
-    Drawer,
-    DrawerBody,
-    DrawerContent,
-    DrawerOverlay,
-    Flex,
-    Heading,
-    IconButton,
-    Link,
-    useDisclosure
-  } from "@chakra-ui/react";
-  import { memo, VFC } from "react";
-  import { HamburgerIcon } from "@chakra-ui/icons";
+/* eslint-disable react-hooks/exhaustive-deps */
+  import { Box, Flex, Heading, Link, useDisclosure } from "@chakra-ui/react";
+  import { memo, useCallback, VFC } from "react";
+  import { useHistory } from "react-router-dom";
   
+  import { MenuIconButton } from "../../atoms/button/MenuIconButton";
+  import { MenuDrawer } from "../../molecules/MenuDrawer";
+
   export const Header: VFC = memo(() => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const history = useHistory();
+  
+    const onClickDashboard = useCallback(() => history.push("/dashboard"), []);
+    const onClickRegistAsset = useCallback(() => history.push("/regist_asset"), []);
+    const onClickAccount = useCallback(() => history.push("/account"), []);
+
     return (
       <>
         <Flex
@@ -26,7 +24,13 @@ import {
           justify="space-between"
           padding={{ base: 3, md: 5 }}
         >
-          <Flex align="center" as="a" mr={8} _hover={{ cursor: "pointer" }}>
+        <Flex
+          align="center"
+          as="a"
+          mr={8}
+          _hover={{ cursor: "pointer" }}
+          onClick={onClickDashboard}
+        >
             <Heading as="h1" fontSize={{ base: "md", md: "lg" }}>
               資産管理アプリ
             </Heading>
@@ -38,30 +42,19 @@ import {
             display={{ base: "none", md: "flex" }}
           >
             <Box pr={4}>
-              <Link>資産登録</Link>
+              <Link onClick={onClickRegistAsset}>資産登録</Link>
             </Box>
-            <Link>アカウント設定</Link>
+            <Link onClick={onClickAccount}>アカウント設定</Link>
           </Flex>
-          <IconButton
-            aria-label="メニューボタン"
-            icon={<HamburgerIcon />}
-            siza="sm"
-            variant="unstyled"
-            display={{ base: "block", md: "none" }}
-            onClick={onOpen}
-          />
+          <MenuIconButton onOpen={onOpen} />
         </Flex>
-        <Drawer placement="left" size="xs" onClose={onClose} isOpen={isOpen}>
-          <DrawerOverlay>
-            <DrawerContent>
-              <DrawerBody p={0} bg="gray.100">
-                <Button w="100%">資産一覧</Button>
-                <Button w="100%">資産登録</Button>
-                <Button w="100%">アカウント設定</Button>
-              </DrawerBody>
-            </DrawerContent>
-          </DrawerOverlay>
-        </Drawer>
+        <MenuDrawer
+        onClose={onClose}
+        isOpen={isOpen}
+        onClickDashboard={onClickDashboard}
+        onClickRegistAsset={onClickRegistAsset}
+        onClickAccount={onClickAccount}
+      />
       </>
     );
   });
