@@ -1,21 +1,21 @@
-import { Dashboard } from "../components/pages/Dashboard";
-import { Detail } from "../components/pages/Detail";
-import { Page404 } from "../components/pages/Page404";
+import { Dashboard } from '../components/pages/Dashboard';
+import { Detail } from '../components/pages/Detail';
+import { Page404 } from '../components/pages/Page404';
 
 export const DashboardRouter = [
   {
-    path: "/",
+    path: '/',
     exact: true,
-    children: <Dashboard />
+    children: <Dashboard />,
   },
   {
-    path: "/detail/",
+    path: '/detail/',
     exact: false,
-    children: <Detail />
+    children: <Detail />,
   },
   {
-    path: "*",
+    path: '*',
     exact: false,
-    children: <Page404 />
-  }
+    children: <Page404 />,
+  },
 ];
