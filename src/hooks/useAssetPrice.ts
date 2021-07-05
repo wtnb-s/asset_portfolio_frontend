@@ -13,7 +13,7 @@ export const useAssetPrice = () => {
   const getAssetPrice = useCallback((assetCode: string | undefined) => {
     setLoading(true);
     axios
-      .get<Array<AssetPrice>>(`http://127.0.0.1:3000/fund/${assetCode}/?fromDate=2021-01-10&toDate=2021-05-20`)
+      .get<Array<AssetPrice>>(`http://127.0.0.1:3000/fund/${assetCode}`)
       .then((res) => {
         if (res.data) {
           setAssetPrice(res.data);
@@ -29,5 +29,5 @@ export const useAssetPrice = () => {
       });
   }, []);
 
-  return { getAssetPrice, loading, assetPrice };
+  return { getAssetPrice, assetPrice, loading };
 };
