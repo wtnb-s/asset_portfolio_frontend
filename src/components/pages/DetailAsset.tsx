@@ -1,29 +1,37 @@
 import { memo, useEffect, VFC } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Center, Spinner } from '@chakra-ui/react';
+import { Heading, Box, Center, Spinner } from '@chakra-ui/react';
 import { LineChart, Line, XAxis, CartesianGrid, Legend, ReferenceLine, Brush, YAxis } from 'recharts';
 
+import { useAssetMaster } from '../../hooks/useAssetMaster';
 import { useAssetPrice } from '../../hooks/useAssetPrice';
 
 export const DetailAsset: VFC = memo(() => {
   const { code } = useParams<{ code?: string }>();
-  const { getAssetPrice, loading, assetPrice } = useAssetPrice();
+  const { getAssetPrice, assetPrice, loadingPrice } = useAssetPrice();
+  const { getAssetMaster, assetMaster, loadingMaster } = useAssetMaster();
+
   useEffect(() => getAssetPrice(code), [getAssetPrice, code]);
+  useEffect(() => getAssetMaster(code), [getAssetMaster, code]);
 
   return (
     <>
       <Box w="100%" p={4}>
-        資産詳細ページ
+        <Heading as="h2" size="lg" fontSize="20px">
+          資産詳細ページ
+        </Heading>
       </Box>
-      <Box w="100%" p={4}>
-        AssetCode:{code}
-      </Box>
-      {loading ? (
+
+      {loadingMaster || loadingPrice ? (
         <Center h="100vh">
           <Spinner />
         </Center>
       ) : (
         <>
+          <Box w="100%" fontSize="18px" p={4}>
+            {assetMaster.length ? assetMaster[0]['Name'] : ''}
+          </Box>
+
           <LineChart width={700} height={500} data={assetPrice}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="Date" tick={{ fontSize: '.7rem' }} />

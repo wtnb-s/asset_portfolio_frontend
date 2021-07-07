@@ -7,7 +7,7 @@ import { useMessage } from './useMessage';
 
 export const useAssetPrice = () => {
   const { showMessage } = useMessage();
-  const [loading, setLoading] = useState(false);
+  const [loadingPrice, setLoading] = useState(false);
   const [assetPrice, setAssetPrice] = useState<Array<AssetPrice>>([]);
 
   const getAssetPrice = useCallback((assetCode: string | undefined) => {
@@ -29,5 +29,5 @@ export const useAssetPrice = () => {
       });
   }, []);
 
-  return { getAssetPrice, assetPrice, loading };
+  return { getAssetPrice, assetPrice, loadingPrice };
 };
