@@ -14,7 +14,7 @@ export const useAssetMaster = () => {
     setLoading(true);
     let url = `http://127.0.0.1:3000/asset/`;
     if (assetCode) {
-        url = `http://127.0.0.1:3000/asset/?assetCode=${assetCode}`;
+        url += `?assetCode=${assetCode}`;
     }
     axios
       .get<Array<AssetMaster>>(url)
