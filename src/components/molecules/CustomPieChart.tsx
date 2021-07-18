@@ -6,6 +6,7 @@ import { RenderActiveShape } from '../atoms/chart/renderActiveShape';
 
 type Props = {
   data: any;
+  dataKey: string;
   cx: number;
   cy: number;
   innerRadius: number;
@@ -15,7 +16,7 @@ type Props = {
 const COLORS = ['#FF8042', '#FFBB28', '#00C49F', '#0088FE', '#4dc4ff', '#ff8082', '#c9ace6', '#804000'];
 
 export const CustomPieChart: VFC<Props> = memo((props) => {
-  const { data, cx, cy, innerRadius, outerRadius } = props;
+  const { data, dataKey, cx, cy, innerRadius, outerRadius } = props;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
@@ -35,7 +36,7 @@ export const CustomPieChart: VFC<Props> = memo((props) => {
         cy={cy}
         innerRadius={innerRadius}
         outerRadius={outerRadius}
-        dataKey="value"
+        dataKey={dataKey}
         onMouseEnter={onPieEnter}
         label={RenderCustomizedLabel}
         labelLine={false}
