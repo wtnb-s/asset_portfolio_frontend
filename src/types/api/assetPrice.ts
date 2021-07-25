@@ -3,4 +3,3 @@ export type AssetPrice = {
   Date: string;
   Price: number;
 };
-  

@@ -30,12 +30,6 @@ export const RenderActiveShape = (props: Props) => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={'#333'}>
-        {'¥1,201,980'}
-      </text>
-      <text x={cx} y={cy + 20} textAnchor="middle" fontSize={11} fill={'#999'}>
-        {'(+100)'}
-      </text>
       <Sector cx={cx} cy={cy} innerRadius={innerRadius} outerRadius={outerRadius} startAngle={startAngle} endAngle={endAngle} fill={fill} />
       <Sector cx={cx} cy={cy} startAngle={startAngle} endAngle={endAngle} innerRadius={outerRadius + 6} outerRadius={outerRadius + 10} fill={fill} />
       <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />

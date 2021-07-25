@@ -3,6 +3,7 @@ import { PieChart, Pie, Cell } from 'recharts';
 
 import { RenderCustomizedLabel } from '../atoms/chart/renderCustomizedLabel';
 import { RenderActiveShape } from '../atoms/chart/renderActiveShape';
+import { AssetUnit } from '../../types/api/assetUnit';
 
 type Props = {
   data: any;
@@ -26,6 +27,10 @@ export const CustomPieChart: VFC<Props> = memo((props) => {
     [setActiveIndex]
   );
 
+  const presentValue = data.reduce((sum: number, item: AssetUnit) => sum + item.presentValue, 0);
+  const acquisitionPrice = data.reduce((sum: number, item: AssetUnit) => sum + item.acquisitionPrice, 0);
+  const netProfitLoss = presentValue - acquisitionPrice;
+
   return (
     <PieChart width={600} height={400}>
       <Pie
@@ -45,6 +50,13 @@ export const CustomPieChart: VFC<Props> = memo((props) => {
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
+      <text x={cx} y={cy} dx={4} dy={8} textAnchor="middle" fill={'#333'}>
+        {`¥${presentValue.toLocaleString()}`}
+      </text>
+      <text x={cx} y={cy + 22} textAnchor="middle" fontSize={11} fill={'#999'}>
+        ({netProfitLoss >= 0 ? '+' : ''}
+        {`${netProfitLoss.toLocaleString()}`})
+      </text>
     </PieChart>
   );
 });
