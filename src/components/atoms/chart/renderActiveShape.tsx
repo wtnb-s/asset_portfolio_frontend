@@ -24,7 +24,7 @@ export const RenderActiveShape = (props: Props) => {
   const sy = cy + (outerRadius + 10) * sin;
   const mx = cx + (outerRadius + 30) * cos;
   const my = cy + (outerRadius + 30) * sin;
-  const ex = mx + (cos >= 0 ? 1 : -1) * 10;
+  const ex = mx + (cos >= 0 ? 1 : -1) * 6;
   const ey = my;
   const textAnchor = cos >= 0 ? 'start' : 'end';
 

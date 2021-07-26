@@ -17,7 +17,7 @@ export const RenderCustomizedLabel = (props: Props) => {
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <text x={x} y={y} fontSize={11} fill="black" textAnchor={'middle'} dominantBaseline="central">
+    <text x={x} y={y} fontSize={12} fill="black" textAnchor={'middle'} dominantBaseline="central">
       {assetName}
     </text>
   );
