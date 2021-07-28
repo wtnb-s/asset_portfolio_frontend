@@ -55,7 +55,7 @@ export const CustomPieChart: VFC<Props> = memo((props) => {
       </text>
       <text x={cx} y={cy + 22} textAnchor="middle" fontSize={11} fill={'#999'}>
         ({netProfitLoss >= 0 ? '+' : ''}
-        {`${netProfitLoss.toLocaleString()}`})
+        {`¥${netProfitLoss.toLocaleString()}`})
       </text>
     </PieChart>
   );
