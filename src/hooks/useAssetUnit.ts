@@ -7,11 +7,10 @@ import { useMessage } from './useMessage';
 
 export const useAssetUnit = () => {
   const { showMessage } = useMessage();
-  const [loadingUnit, setLoading] = useState(false);
+  const [loadingUnit, setLoading] = useState(true);
   const [assetUnit, setAssetUnit] = useState<Array<AssetUnit>>([]);
 
   const getAssetUnit = useCallback((assetCode: string | undefined) => {
-    setLoading(true);
     let url = `http://127.0.0.1:3000/unit/${assetCode}`;
 
     axios

@@ -31,7 +31,7 @@ export const DetailAsset: VFC = memo(() => {
           <Box w="100%" fontSize="18px" p={4}>
             {assetMaster.length ? assetMaster[0]['Name'] : ''}
           </Box>
-          <CustomLineChart assetPrice={assetPrice} dataKeyXaxis="Date" dataKeyYaxis="Price" width="90%" height={400} />
+          <CustomLineChart data={assetPrice} dataKeyXaxis="Date" dataKeyYaxis="Price" width="90%" height={400} />
         </>
       )}
     </>

@@ -2,7 +2,7 @@ import { memo, VFC } from 'react';
 import { ResponsiveContainer, LineChart, Line, XAxis, CartesianGrid, Legend, ReferenceLine, Brush, YAxis } from 'recharts';
 
 type Props = {
-  assetPrice: any;
+  data: any;
   dataKeyXaxis: string;
   dataKeyYaxis: string;
   width: string;
@@ -10,11 +10,11 @@ type Props = {
 };
 
 export const CustomLineChart: VFC<Props> = memo((props) => {
-  const { assetPrice, dataKeyXaxis, dataKeyYaxis, width, height } = props;
+  const { data, dataKeyXaxis, dataKeyYaxis, width, height } = props;
 
   return (
     <ResponsiveContainer width={width} height={height}>
-      <LineChart data={assetPrice}>
+      <LineChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey={dataKeyXaxis} tick={{ fontSize: '.7rem' }} />
         <YAxis domain={['auto', 'auto']} interval="preserveStartEnd" />
