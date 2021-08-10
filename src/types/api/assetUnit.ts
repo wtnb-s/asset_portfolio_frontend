@@ -1,7 +1,7 @@
 export type AssetUnit = {
   assetName: string;
-  acquisitionPrice: number;
+  totalUnit: number;
+  totalBuyPrice: number;
   presentValue: number;
   avaregeUnitPrice: number;
-  sumUnit: number;
 };

@@ -11,7 +11,7 @@ export const useAssetUnit = () => {
   const [assetUnit, setAssetUnit] = useState<Array<AssetUnit>>([]);
 
   const getAssetUnit = useCallback((assetCode: string | undefined) => {
-    let url = `http://127.0.0.1:3000/unit/${assetCode}`;
+    let url = `http://127.0.0.1:3000/asset-buy/${assetCode}`;
 
     axios
       .get<Array<AssetUnit>>(url)

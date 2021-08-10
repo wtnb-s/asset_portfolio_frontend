@@ -12,7 +12,7 @@ export const useAssetMaster = () => {
 
   const getAssetMaster = useCallback((assetCode: string | undefined) => {
     setLoading(true);
-    let url = `http://127.0.0.1:3000/asset/`;
+    let url = `http://127.0.0.1:3000/asset-master/`;
     if (assetCode) {
         url += `?assetCode=${assetCode}`;
     }

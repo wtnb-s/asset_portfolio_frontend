@@ -28,7 +28,7 @@ export const CustomPieChart: VFC<Props> = memo((props) => {
   );
 
   const presentValue = data.reduce((sum: number, item: AssetUnit) => sum + item.presentValue, 0);
-  const acquisitionPrice = data.reduce((sum: number, item: AssetUnit) => sum + item.acquisitionPrice, 0);
+  const acquisitionPrice = data.reduce((sum: number, item: AssetUnit) => sum + item.totalBuyPrice, 0);
   const netProfitLoss = presentValue - acquisitionPrice;
 
   return (
