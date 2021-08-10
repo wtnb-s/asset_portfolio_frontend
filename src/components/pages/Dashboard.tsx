@@ -3,12 +3,18 @@ import { Box, Center, Spinner } from '@chakra-ui/react';
 import { ResponsiveContainer } from 'recharts';
 
 import { useAssetUnit } from '../../hooks/useAssetUnit';
+import { useAssetTransition } from '../../hooks/useAssetTransition';
 import { CustomPieChart } from '../molecules/CustomPieChart';
+import { CustomLineChart } from '../molecules/CustomLineChart';
 
 export const Dashboard: VFC = memo(() => {
   const { getAssetUnit, assetUnit, loadingUnit } = useAssetUnit();
+  const { getAssetTransition, assetTransition } = useAssetTransition();
+
   useEffect(() => getAssetUnit(''), [getAssetUnit]);
-  let convertAssetUnit = Object.keys(assetUnit).map(function (key: any) {
+  useEffect(() => getAssetTransition(), [getAssetTransition]);
+
+  let convertAssetUnit = Object.keys(assetUnit).map((key: any) => {
     return assetUnit[key];
   });
 
@@ -23,9 +29,13 @@ export const Dashboard: VFC = memo(() => {
           <Spinner />
         </Center>
       ) : (
-        <ResponsiveContainer width="90%" height={400}>
-          <CustomPieChart data={convertAssetUnit} dataKey={'presentValue'} cx={240} cy={180} innerRadius={50} outerRadius={130} />
-        </ResponsiveContainer>
+        <>
+          <ResponsiveContainer width="90%" height={300}>
+            <CustomPieChart data={convertAssetUnit} dataKey={'presentValue'} cx={240} cy={180} innerRadius={40} outerRadius={110} />
+          </ResponsiveContainer>
+
+          <CustomLineChart data={assetTransition} dataKeyXaxis="Date" dataKeyYaxis="Value" width="80%" height={300} />
+        </>
       )}
     </>
   );
