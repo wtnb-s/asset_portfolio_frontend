@@ -1,13 +1,13 @@
 import React from 'react';
-import { render } from "react-dom";
+import { render } from 'react-dom';
 
-import App from "./App";
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Amplify from "aws-amplify";
-import awsExports from "./aws-exports";
+import Amplify from 'aws-amplify';
+import awsExports from './aws-exports';
 Amplify.configure(awsExports);
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById('root');
 render(
   <React.StrictMode>
     <App />
