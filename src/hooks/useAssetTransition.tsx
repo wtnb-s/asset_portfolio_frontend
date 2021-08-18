@@ -8,13 +8,13 @@ import { useMessage } from './useMessage';
 export const useAssetTransition = () => {
   const { showMessage } = useMessage();
   const [loadingTransition, setLoading] = useState(true);
-  const [assetTransition, setAssetTransition] = useState<AssetTransition>();
+  const [assetTransition, setAssetTransition] = useState<Array<AssetTransition>>([]);
 
   const getAssetTransition = useCallback(() => {
     let url = `http://127.0.0.1:3000/asset-transition/`;
 
     axios
-      .get<AssetTransition>(url)
+      .get<Array<AssetTransition>>(url)
       .then((res) => {
         if (res.data) {
           setAssetTransition(res.data);

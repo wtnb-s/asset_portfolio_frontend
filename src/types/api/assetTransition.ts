@@ -1,6 +1,6 @@
 export type AssetTransition = {
-    date: string[];
-    value: number[];
-    profit: number[];
+    date: string;
+    value: number;
+    profit: number;
   };
   
