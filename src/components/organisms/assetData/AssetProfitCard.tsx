@@ -1,36 +1,41 @@
 import { Box, Stack } from '@chakra-ui/react';
 import { memo, VFC } from 'react';
 
+import { AssetTransition } from '../../../types/api/assetTransition';
+
 type Props = {
   width: string;
   height: number;
-  title: string;
-  value: number;
-  comparedLastDay: number;
-  comparedLastDayRate: number;
+  assetTransition: AssetTransition[];
 };
 
-export const AssetCard: VFC<Props> = memo((props) => {
-  const { width, height, title, value, comparedLastDay, comparedLastDayRate } = props;
+export const AssetProfitCard: VFC<Props> = memo((props) => {
+  const { width, height, assetTransition } = props;
+
+  let todayProfit = assetTransition[assetTransition.length - 1].Profit;
+  let previousDayProfit = assetTransition[assetTransition.length - 2].Profit;
+  let dayBeforeProfit = todayProfit - previousDayProfit;
+  let dayBeforeProfitRate = dayBeforeProfit / todayProfit;
+
   // 前日比の文字色(＋であればblue、-であればred)
-  const comparedLastDayColor = comparedLastDay >= 0 ? 'blue' : 'red';
+  const comparedLastDayColor = dayBeforeProfit >= 0 ? 'blue' : 'red';
 
   return (
     <Box w={width} h={height} bg="white" borderRadius="10px" shadow="md" p={4} _hover={{ cursor: 'pointer', opacity: 0.8 }}>
       <Stack>
         <Box fontSize="sm" fontWeight="semibold">
-          {title}
+          含み損益
         </Box>
         <Box fontSize="3xl" fontWeight="bold">
-          {`¥${value.toLocaleString()}`}
+          {`¥${todayProfit.toLocaleString()}`}
         </Box>
         <Box fontSize="sm" d="flex" alignItems="baseline">
           <Box>前日比：</Box>
           <Box fontWeight="semibold" color={comparedLastDayColor}>
-            {`¥${comparedLastDay.toLocaleString()}`}
+            {`¥${dayBeforeProfit.toLocaleString()}`}
           </Box>
           <Box fontSize="xs" color={comparedLastDayColor}>
-            {`(${comparedLastDayRate.toFixed(1)}%)`}
+            {`(${dayBeforeProfitRate.toFixed(2)}%)`}
           </Box>
         </Box>
       </Stack>
