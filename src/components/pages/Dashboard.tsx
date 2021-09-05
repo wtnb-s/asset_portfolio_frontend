@@ -6,11 +6,12 @@ import { useAssetTransition } from '../../hooks/useAssetTransition';
 import { CustomLineChart } from '../molecules/CustomLineChart';
 import { AssetTotalCard } from '../organisms/assetData/AssetTotalCard';
 import { AssetProfitCard } from '../organisms/assetData/AssetProfitCard';
-import { AssetPieChart } from '../organisms/assetData/AssetPieChart';
+//import { AssetPieChart } from '../organisms/assetData/AssetPieChart';
+import { AssetCategoryPieChart } from '../organisms/assetData/AssetCategoryPieChart';
 
 export const Dashboard: VFC = memo(() => {
-  const { getAssetUnit, assetUnit, loadingUnit } = useAssetUnit();
-  const { getAssetTransition, assetTransition, loadingTransition } = useAssetTransition();
+  const { getAssetUnit, assetUnit } = useAssetUnit();
+  const { getAssetTransition, assetTransition } = useAssetTransition();
 
   useEffect(() => getAssetUnit(''), [getAssetUnit]);
   useEffect(() => getAssetTransition(), [getAssetTransition]);
@@ -21,7 +22,7 @@ export const Dashboard: VFC = memo(() => {
         サマリー
       </Box>
       <Box w="100%" p={4}>
-        {loadingUnit || assetUnit === undefined || loadingTransition || assetTransition === undefined ? (
+        {!assetUnit?.Detail.length || !assetTransition.length ? (
           <Center h="100%">
             <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
           </Center>
@@ -36,8 +37,12 @@ export const Dashboard: VFC = memo(() => {
               <AssetProfitCard width={'240px'} height={160} assetTransition={assetTransition} />
               <CustomLineChart data={assetTransition} dataKeyXaxis="Date" dataKeyYaxis="Profit" width="90%" height={180} />
             </Box>
-
-            <AssetPieChart width={'600'} height={500} assetUnitDetail={assetUnit?.Detail} />
+            <Box d="flex" float="left">
+              <AssetCategoryPieChart width={330} height={220} assetUnitCategoryData={assetUnit.Category} />
+            </Box>
+            {/* <Box float="left">
+              <AssetPieChart width={'600'} height={500} assetUnitDetail={assetUnit.Detail} />
+            </Box> */}
           </>
         )}
       </Box>

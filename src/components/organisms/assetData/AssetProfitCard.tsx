@@ -21,7 +21,7 @@ export const AssetProfitCard: VFC<Props> = memo((props) => {
   const comparedLastDayColor = dayBeforeProfit >= 0 ? 'blue' : 'red';
 
   return (
-    <Box w={width} h={height} bg="white" borderRadius="10px" shadow="md" p={4} _hover={{ cursor: 'pointer', opacity: 0.8 }}>
+    <Box w={width} h={height} bg="white" borderRadius="10px" shadow="md" p={4}>
       <Stack>
         <Box fontSize="sm" fontWeight="semibold">
           含み損益

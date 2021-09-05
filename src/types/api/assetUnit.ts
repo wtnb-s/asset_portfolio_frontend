@@ -1,9 +1,6 @@
 export type AssetUnit = {
   Detail: Detail[]
-  Category:{
-    PresentValue: number[];
-    TotalBuyPrice: number[];
-  }
+  Category: Category[]
 };
 
 export type Detail = {
@@ -12,4 +9,11 @@ export type Detail = {
   TotalBuyPrice: number;
   PresentValue: number;
   AvaregeUnitPrice: number;
+};
+
+export type Category = {
+  AssetName: string;
+  TotalUnit: number;
+  TotalBuyPrice: number;
+  PresentValue: number;
 };
