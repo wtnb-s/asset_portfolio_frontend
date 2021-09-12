@@ -11,6 +11,8 @@ type Color = {
 
 type Props = {
   data: Category[];
+  presentValue: number;
+  netProfitLoss: number;
   dataKey: string;
   cx: number;
   cy: number;
@@ -20,14 +22,10 @@ type Props = {
 };
 
 export const CustomPieChartCategory: VFC<Props> = memo((props) => {
-  const { data, dataKey, cx, cy, innerRadius, outerRadius, colorList } = props;
-
-  const presentValue = data.reduce((sum: number, item: Category) => sum + item.PresentValue, 0);
-  const acquisitionPrice = data.reduce((sum: number, item: Category) => sum + item.TotalBuyPrice, 0);
-  const netProfitLoss = presentValue - acquisitionPrice;
+  const { data, presentValue, netProfitLoss, dataKey, cx, cy, innerRadius, outerRadius, colorList } = props;
 
   return (
-    <PieChart width={240} height={240}>
+    <PieChart width={230} height={200}>
       <Pie data={data} cx={cx} cy={cy} innerRadius={innerRadius} outerRadius={outerRadius} dataKey={dataKey} label={RenderCustomizedLabel} labelLine={false}>
         {data.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={colorList[index % colorList.length].colorCode} />

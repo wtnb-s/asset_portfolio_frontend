@@ -12,6 +12,7 @@ export type Detail = {
 };
 
 export type Category = {
+  AssetCode: string;
   AssetName: string;
   TotalUnit: number;
   TotalBuyPrice: number;
