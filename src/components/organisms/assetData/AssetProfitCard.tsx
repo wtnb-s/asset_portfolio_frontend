@@ -15,7 +15,7 @@ export const AssetProfitCard: VFC<Props> = memo((props) => {
   let todayProfit = assetTransition[assetTransition.length - 1].Profit;
   let previousDayProfit = assetTransition[assetTransition.length - 2].Profit;
   let dayBeforeProfit = todayProfit - previousDayProfit;
-  let dayBeforeProfitRate = dayBeforeProfit / todayProfit;
+  let dayBeforeProfitRate = (dayBeforeProfit / todayProfit) * 100;
 
   // 前日比の文字色(＋であればblue、-であればred)
   const comparedLastDayColor = dayBeforeProfit >= 0 ? 'blue' : 'red';
@@ -32,10 +32,12 @@ export const AssetProfitCard: VFC<Props> = memo((props) => {
         <Box fontSize="sm" d="flex" alignItems="baseline">
           <Box>前日比：</Box>
           <Box fontWeight="semibold" color={comparedLastDayColor}>
-            {`¥${dayBeforeProfit.toLocaleString()}`}
+            ¥{dayBeforeProfit >= 0 ? '+' : ''}
+            {`${dayBeforeProfit.toLocaleString()}`}
           </Box>
           <Box fontSize="xs" color={comparedLastDayColor}>
-            {`(${dayBeforeProfitRate.toFixed(2)}%)`}
+            ({dayBeforeProfitRate >= 0 ? '+' : ''}
+            {`${dayBeforeProfitRate.toFixed(2)}%`})
           </Box>
         </Box>
       </Stack>

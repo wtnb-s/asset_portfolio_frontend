@@ -15,7 +15,7 @@ export const AssetTotalCard: VFC<Props> = memo((props) => {
   let todayValue = assetTransition[assetTransition.length - 1].Value;
   let previousDayValue = assetTransition[assetTransition.length - 2].Value;
   let dayBeforeValue = todayValue - previousDayValue;
-  let dayBeforeValueRate = dayBeforeValue / todayValue;
+  let dayBeforeValueRate = (dayBeforeValue / todayValue) * 100;
 
   // 前日比の文字色(＋であればblue、-であればred)
   const comparedLastDayColor = dayBeforeValue >= 0 ? 'blue' : 'red';
@@ -32,10 +32,12 @@ export const AssetTotalCard: VFC<Props> = memo((props) => {
         <Box fontSize="sm" d="flex" alignItems="baseline">
           <Box>前日比：</Box>
           <Box fontWeight="semibold" color={comparedLastDayColor}>
-            {`¥${dayBeforeValue.toLocaleString()}`}
+            ¥{dayBeforeValue >= 0 ? '+' : ''}
+            {`${dayBeforeValue.toLocaleString()}`}
           </Box>
           <Box fontSize="xs" color={comparedLastDayColor}>
-            {`(${dayBeforeValueRate.toFixed(2)}%)`}
+            ({dayBeforeValueRate >= 0 ? '+' : ''}
+            {`${dayBeforeValueRate.toFixed(2)}%`})
           </Box>
         </Box>
       </Stack>
