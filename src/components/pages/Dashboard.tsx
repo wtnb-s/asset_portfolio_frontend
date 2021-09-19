@@ -4,6 +4,7 @@ import { Box, Center, Spinner } from '@chakra-ui/react';
 import { useAssetUnit } from '../../hooks/useAssetUnit';
 import { useAssetTransition } from '../../hooks/useAssetTransition';
 import { CustomLineChart } from '../molecules/CustomLineChart';
+import { AssetList } from '../molecules/AssetList';
 import { AssetTotalCard } from '../organisms/assetData/AssetTotalCard';
 import { AssetProfitCard } from '../organisms/assetData/AssetProfitCard';
 //import { AssetPieChart } from '../organisms/assetData/AssetPieChart';
@@ -43,6 +44,7 @@ export const Dashboard: VFC = memo(() => {
             {/* <Box float="left">
               <AssetPieChart width={'600'} height={500} assetUnitDetail={assetUnit.Detail} />
             </Box> */}
+            <AssetList assetDataDetail={assetUnit.Detail} />
           </>
         )}
       </Box>
