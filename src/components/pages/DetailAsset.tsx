@@ -23,8 +23,8 @@ export const DetailAsset: VFC = memo(() => {
       </Box>
 
       {loadingMaster || loadingPrice ? (
-        <Center h="100vh">
-          <Spinner />
+        <Center h="100%">
+          <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
         </Center>
       ) : (
         <>

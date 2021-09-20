@@ -29,12 +29,12 @@ export const Dashboard: VFC = memo(() => {
           </Center>
         ) : (
           <>
-            <Box d="flex">
+            <Box d="flex" marginBottom={4}>
               <AssetTotalCard width={'240px'} height={160} assetTransition={assetTransition} />
               <CustomLineChart data={assetTransition} dataKeyXaxis="Date" dataKeyYaxis="Value" width="80%" height={'180px'} />
             </Box>
 
-            <Box d="flex">
+            <Box d="flex" marginBottom={4}>
               <AssetProfitCard width={'240px'} height={160} assetTransition={assetTransition} />
               <CustomLineChart data={assetTransition} dataKeyXaxis="Date" dataKeyYaxis="Profit" width="80%" height={'180px'} />
             </Box>

@@ -1,7 +1,9 @@
-import { memo, VFC } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { memo, useCallback, VFC } from 'react';
 import { Box, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 
 import { Detail } from '../../types/api/assetUnit';
+import { useHistory } from 'react-router-dom';
 
 type Props = {
   assetDataDetail: Detail[];
@@ -9,6 +11,9 @@ type Props = {
 
 export const AssetList: VFC<Props> = memo((props) => {
   const { assetDataDetail } = props;
+
+  const history = useHistory();
+  const onClickAssetDetail = useCallback((assetCode: string) => history.push(`/asset/${assetCode}`), []);
 
   // 評価額の大きい順に並び替え
   assetDataDetail.sort(function (a, b) {
@@ -32,7 +37,7 @@ export const AssetList: VFC<Props> = memo((props) => {
         </Thead>
         <Tbody>
           {assetDataDetail.map((assetData) => (
-            <Tr key={assetData.AssetCode}>
+            <Tr key={assetData.AssetCode} onClick={() => onClickAssetDetail(assetData.AssetCode)} _hover={{ cursor: 'pointer', opacity: 0.8 }}>
               <Td>{assetData.AssetCode}</Td>
               <Td>{assetData.AssetName}</Td>
               <Td>
@@ -51,7 +56,7 @@ export const AssetList: VFC<Props> = memo((props) => {
                   {`${assetData.StockPriceDayBeforeProfitRate.toFixed(2)}%`})
                 </Box>
               </Td>
-              <Td>{`¥${assetData.AvaregeUnitPrice.toLocaleString()}`}</Td>
+              <Td>¥{`${assetData.AvaregeUnitPrice.toLocaleString()}`}</Td>
             </Tr>
           ))}
         </Tbody>

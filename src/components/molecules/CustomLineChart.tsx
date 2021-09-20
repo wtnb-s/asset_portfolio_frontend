@@ -1,6 +1,6 @@
 import { memo, VFC } from 'react';
 import { Box } from '@chakra-ui/react';
-import { ResponsiveContainer, LineChart, Line, XAxis, CartesianGrid, Legend, ReferenceLine, YAxis } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, CartesianGrid, Legend, ReferenceLine, YAxis, Tooltip, Brush } from 'recharts';
 
 type Props = {
   data: any;
@@ -23,6 +23,8 @@ export const CustomLineChart: VFC<Props> = memo((props) => {
           <Legend verticalAlign="top" wrapperStyle={{ lineHeight: '10px' }} />
           <ReferenceLine y={0} stroke="#000" />
           <Line type="monotone" dataKey={dataKeyYaxis} stroke="#8884d8" dot={false} />
+          <Tooltip />
+          <Brush height={20} stroke="#8884d8" />
         </LineChart>
       </ResponsiveContainer>
     </Box>
