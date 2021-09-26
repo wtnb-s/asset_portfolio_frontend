@@ -14,6 +14,7 @@ const COLORS = [
   { colorCode: '#ff8082', name: '新興国債券' },
   { colorCode: '#c9ace6', name: 'コモディティ' },
   { colorCode: '#CC9966', name: '暗号資産' },
+  { colorCode: '#CCCCCC', name: '現金' },
 ];
 
 type Props = {
@@ -45,7 +46,7 @@ export const AssetCategoryPieChart: VFC<Props> = memo((props) => {
               outerRadius={90}
               colorList={COLORS}
             />
-            <Box position={'absolute'} top={'10%'} left={'64%'}>
+            <Box position={'absolute'} top={'0%'} left={'64%'}>
               <UsageGuidePieChart colorList={COLORS} />
             </Box>
           </Box>
