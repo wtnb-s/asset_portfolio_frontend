@@ -23,7 +23,7 @@ export const AssetCategoryList: VFC<Props> = memo((props) => {
         {assetUnitCategoryData.map((data, index) => (
           <ListItem key={data.AssetCode} borderBottom={'1px dashed #ddd'} p={'1'} display={'table'} w={'100%'}>
             <Box display={'table-cell'} verticalAlign={'middle'} w={'30px'}>
-              <Icon viewBox="0 0 250 250" color={colorList[index].colorCode}>
+              <Icon viewBox="0 0 250 250" color={colorList[Number(data.AssetCode) - 1].colorCode}>
                 <path fill="currentColor" d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0" />
               </Icon>
             </Box>

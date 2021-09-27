@@ -28,7 +28,7 @@ export const CustomPieChartCategory: VFC<Props> = memo((props) => {
     <PieChart width={230} height={200}>
       <Pie data={data} cx={cx} cy={cy} innerRadius={innerRadius} outerRadius={outerRadius} dataKey={dataKey} label={RenderCustomizedLabel} labelLine={false}>
         {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={colorList[index % colorList.length].colorCode} />
+          <Cell key={`cell-${index}`} fill={colorList[Number(entry.AssetCode) - 1].colorCode} />
         ))}
       </Pie>
       <text x={cx} y={cy} dx={5} dy={8} textAnchor="middle" fill={'#333'}>
